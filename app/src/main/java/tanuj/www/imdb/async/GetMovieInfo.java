@@ -5,7 +5,6 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,10 +20,10 @@ import tanuj.www.imdb.net.ServiceHandler;
 public class GetMovieInfo extends AsyncTask<String, Void, Boolean> {
 
     public JSONArray results;
-    public ListAdapter adapter;
     private Context context;
     private List<MovieInfo> movieList;
     private ListView listview;
+    public ListAdapter adapter;
 
     public GetMovieInfo(Context context, List<MovieInfo> movieList, ListView listview) {
 

@@ -4,11 +4,9 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,9 +17,9 @@ import tanuj.www.imdb.net.ServiceHandler;
 
 public class GetCastCrew extends AsyncTask<String, Void, List<Cast>> {
 
+    private Context context;
     public JSONArray castArray;
     public List<Cast> castList;
-    private Context context;
     private String tag;
 
     public GetCastCrew(Context context, String tag) {
@@ -41,7 +39,7 @@ public class GetCastCrew extends AsyncTask<String, Void, List<Cast>> {
                 JSONObject jsonObj = new JSONObject(jsonStr);
                 castArray = jsonObj.getJSONArray(tag);
 
-                if (tag.equals(Constants.TAG_CAST)) {
+                if(tag.equals(Constants.TAG_CAST)) {
 
                     for (int i = 0; i < castArray.length(); i++) {
                         JSONObject o = castArray.getJSONObject(i);

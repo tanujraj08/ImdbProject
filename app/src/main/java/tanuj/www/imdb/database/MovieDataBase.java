@@ -6,7 +6,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,27 +70,27 @@ public class MovieDataBase extends SQLiteOpenHelper {
 
     public MovieInfo getMovie(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_MOVIEDETAILS, new String[]{COLUMN_TITLE, COLUMN_RELEASE_DATE,
-                        COLUMN_POSTER_PATH, COLUMN_VOTE_AVERAGE, COLUMN_VOTE_COUNT, COLUMN_IS_FAVORITE, COLUMN_IS_WATCHLIST}, COLUMN_ID + "=?",
-                new String[]{id}, null, null, null, null);
+        Cursor cursor = db.query(TABLE_MOVIEDETAILS, new String[] {COLUMN_TITLE, COLUMN_RELEASE_DATE,
+        COLUMN_POSTER_PATH, COLUMN_VOTE_AVERAGE, COLUMN_VOTE_COUNT, COLUMN_IS_FAVORITE, COLUMN_IS_WATCHLIST}, COLUMN_ID + "=?",
+                new String[] {id}, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
-        MovieInfo movieInfo = new MovieInfo();
-        movieInfo.setId(id);
-        movieInfo.setTitle(cursor.getString(0));
-        movieInfo.setDate(cursor.getString(1));
-        movieInfo.setPoster(cursor.getString(2));
-        movieInfo.setVote_average(cursor.getString(3));
-        movieInfo.setVote_count(cursor.getString(4));
-        movieInfo.setFavorites(cursor.getInt(5));
-        movieInfo.setWatchList(cursor.getInt(6));
+            MovieInfo movieInfo = new MovieInfo();
+            movieInfo.setId(id);
+            movieInfo.setTitle(cursor.getString(0));
+            movieInfo.setDate(cursor.getString(1));
+            movieInfo.setPoster(cursor.getString(2));
+            movieInfo.setVote_average(cursor.getString(3));
+            movieInfo.setVote_count(cursor.getString(4));
+            movieInfo.setFavorites(cursor.getInt(5));
+            movieInfo.setWatchList(cursor.getInt(6));
         return movieInfo;
     }
 
     public boolean checkMovie(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_MOVIEDETAILS, null, COLUMN_ID + "=?", new String[]{id}, null, null, null, null);
-        if (cursor.getCount() > 0) {
+        Cursor cursor = db.query(TABLE_MOVIEDETAILS, null, COLUMN_ID + "=?", new String[] {id}, null, null, null, null);
+        if(cursor.getCount() > 0) {
             return true;
         } else {
             return false;
@@ -102,14 +101,14 @@ public class MovieDataBase extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_IS_FAVORITE, movieInfo.getFavorites());
-        return db.update(TABLE_MOVIEDETAILS, values, COLUMN_ID + "=?", new String[]{movieInfo.getId()});
+        return db.update(TABLE_MOVIEDETAILS, values, COLUMN_ID + "=?", new String[] {movieInfo.getId()});
     }
 
     public int updateMovieW(MovieInfo movieInfo) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_IS_WATCHLIST, movieInfo.getWatchList());
-        return db.update(TABLE_MOVIEDETAILS, values, COLUMN_ID + "=?", new String[]{movieInfo.getId()});
+        return db.update(TABLE_MOVIEDETAILS, values, COLUMN_ID + "=?", new String[] {movieInfo.getId()});
     }
 
     public List<MovieInfo> getFavorites() {
@@ -117,9 +116,9 @@ public class MovieDataBase extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_MOVIEDETAILS,
-                new String[]{COLUMN_ID, COLUMN_TITLE, COLUMN_RELEASE_DATE, COLUMN_POSTER_PATH,
-                        COLUMN_VOTE_AVERAGE, COLUMN_VOTE_COUNT, COLUMN_IS_FAVORITE}
-                , COLUMN_IS_FAVORITE + "=?", new String[]{String.valueOf(1)}, null, null, null);
+                new String[]{COLUMN_ID,COLUMN_TITLE,COLUMN_RELEASE_DATE,COLUMN_POSTER_PATH,
+                COLUMN_VOTE_AVERAGE,COLUMN_VOTE_COUNT,COLUMN_IS_FAVORITE}
+                ,COLUMN_IS_FAVORITE+"=?",new String[]{String.valueOf(1)},null,null,null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -144,9 +143,9 @@ public class MovieDataBase extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_MOVIEDETAILS,
-                new String[]{COLUMN_ID, COLUMN_TITLE, COLUMN_RELEASE_DATE, COLUMN_POSTER_PATH,
-                        COLUMN_VOTE_AVERAGE, COLUMN_VOTE_COUNT, COLUMN_IS_WATCHLIST}
-                , COLUMN_IS_WATCHLIST + "=?", new String[]{String.valueOf(1)}, null, null, null);
+                new String[]{COLUMN_ID,COLUMN_TITLE,COLUMN_RELEASE_DATE,COLUMN_POSTER_PATH,
+                        COLUMN_VOTE_AVERAGE,COLUMN_VOTE_COUNT,COLUMN_IS_WATCHLIST}
+                ,COLUMN_IS_WATCHLIST+"=?",new String[]{String.valueOf(1)},null,null,null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -168,7 +167,7 @@ public class MovieDataBase extends SQLiteOpenHelper {
 
     public void deleteNonFavWatchMovie() {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_MOVIEDETAILS, COLUMN_IS_FAVORITE + "=? AND " + COLUMN_IS_WATCHLIST + "=?", new String[]{String.valueOf(0), String.valueOf(0)});
+        db.delete(TABLE_MOVIEDETAILS, COLUMN_IS_FAVORITE + "=? AND "+COLUMN_IS_WATCHLIST+"=?", new String[] {String.valueOf(0),String.valueOf(0)});
         db.close();
     }
 

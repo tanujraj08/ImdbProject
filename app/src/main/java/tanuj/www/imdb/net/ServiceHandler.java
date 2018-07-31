@@ -17,10 +17,9 @@ import java.util.List;
 
 public class ServiceHandler {
 
+    static String response = null;
     public final static int GET = 1;
     public final static int POST = 2;
-    static String response = null;
-
     public String makeServiceCall(String url, int method) {
         return this.makeServiceCall(url, method, null);
     }

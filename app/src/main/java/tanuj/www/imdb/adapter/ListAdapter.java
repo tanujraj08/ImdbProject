@@ -18,10 +18,10 @@ import tanuj.www.imdb.utils.ImageLoader;
 
 public class ListAdapter extends ArrayAdapter<MovieInfo> {
 
-    public ImageLoader imageLoader;
     private Context context;
     private int resource;
     private List<MovieInfo> movieList;
+    public ImageLoader imageLoader;
 
     public ListAdapter(Context context, int resource, List<MovieInfo> movieList) {
         super(context, resource, movieList);
@@ -70,16 +70,16 @@ public class ListAdapter extends ArrayAdapter<MovieInfo> {
         return row;
     }
 
-    @Override
-    public int getCount() {
-        return super.getCount();
-    }
-
     private static class Holder {
         TextView titleHolder;
         TextView dateHolder;
         RatingBar ratingHolder;
         ImageView imageHolder;
         TextView voteHolder;
+    }
+
+    @Override
+    public int getCount() {
+        return super.getCount();
     }
 }

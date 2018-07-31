@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,9 +26,9 @@ import tanuj.www.imdb.views.DetailsActivity;
 public class MovieList extends ListFragment {
 
     public String URL;
-    public ListAdapter adapter;
     private ListView listview;
     private List<MovieInfo> movieList;
+    public ListAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -79,7 +78,7 @@ public class MovieList extends ListFragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch (id) {
+        switch(id) {
 
             case R.id.watchlist:
 
@@ -97,7 +96,7 @@ public class MovieList extends ListFragment {
 
                 String barTitle = getActivity().getTitle().toString();
 
-                switch (barTitle) {
+                switch(barTitle) {
                     case Constants.MOST_POPULAR:
                         SetList(Constants.MOVIE_POPULAR);
                     case Constants.UPCOMING:

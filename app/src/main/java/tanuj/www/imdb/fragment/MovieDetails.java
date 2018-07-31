@@ -42,8 +42,8 @@ public class MovieDetails extends Fragment {
     public ImageView favorites;
     public ImageView watchlist;
     public String movieID;
-    public MovieInfo movie;
     private ImageLoader imageLoader;
+    public MovieInfo movie;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -194,7 +194,7 @@ public class MovieDetails extends Fragment {
                 favorites.setTag("disable");
                 movie.setFavorites(0);
 
-            } else {
+            } else  {
                 favorites.setImageResource(R.drawable.favorite_enable_normal);
                 favorites.setTag("enable");
                 movie.setFavorites(1);
